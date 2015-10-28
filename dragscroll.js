@@ -43,9 +43,10 @@
                         pushed = 1;
                         lastClientX = e.clientX;
                         lastClientY = e.clientY;
-
+                        if(draggable) { // check if drag allowed
                         e.preventDefault();
                         e.stopPropagation();
+                        } //Check End
                     }, 0
                 );
                  
@@ -56,6 +57,7 @@
                 _window[addEventListener](
                     mousemove,
                     el.mm = function(e, scroller) {
+                    	if(draggable) { // check if drag allowed
                         scroller = el.scroller||el;
                         if (pushed) {
                              scroller.scrollLeft -=
@@ -63,6 +65,7 @@
                              scroller.scrollTop -=
                                  (- lastClientY + (lastClientY=e.clientY));
                         }
+                   } //Check End
                     }, 0
                 );
              })(dragged[i++]);
